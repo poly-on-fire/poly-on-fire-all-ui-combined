@@ -21,27 +21,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <div class="card">
+    <div class="card" hidden$=[[!visible.view.a]]>
       <div class="circle">1</div>
       <h1>View One</h1>
+      <p>Note that clicking 'Play Visibility Roulette!' button at left has the effect of making different views choose-able in the menu. Also note delay, as this state change is coming from the firebase database, and then through redux within the UI code</p>
       <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
       <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
     </div>
   </template>
 
   <script>
-    class MyView1 extends Polymer.Element {
+    class MyView1 extends ReduxMixin(Polymer.Element)  {
       static get is() { return 'my-view1'; }
       static get properties() {
         return {
-          visibility: {
+          visible: {
             type: Object,
-            statePath: 'visibility'
+            statePath: 'visible'
           }
         }
       }
     }
-
     window.customElements.define(MyView1.is, MyView1);
   </script>
 </dom-module>

@@ -25,13 +25,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/polymerfire/firebase-app.html"/>
 <link rel="import" href="../bower_components/polymerfire/firebase-auth.html"/>
 <link rel="import" href="my-icons.html">
-<link rel="import" href="visibility-roulette.html">
-<link rel="import" href="visibility-controller.html">
-
 <link rel="lazy-import" href="my-view1.html">
 <link rel="lazy-import" href="my-view2.html">
 <link rel="lazy-import" href="my-view3.html">
 <link rel="lazy-import" href="my-view404.html">
+<link rel="import" href="visibility-roulette.html">
+<link rel="import" href="visibility-controller.html">
 
 <dom-module id="my-app">
   <template>
@@ -74,6 +73,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
+    <!--non-visual components-->
     <firebase-app id='firebase' auth-domain="pullmodel.com"
       database-url="https://pullmodel-5d998.firebaseio.com/"
       projectId: "pullmodel-5d998"
@@ -88,7 +88,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <visibility-controller user=[[user]]></visibility-controller>
 
 
-    <!-- note that the side effect of this code is to roll the main-title on
+    <!-- note that the side effect of this code section is to roll the main-title on
     top of the page from code below it. Did not take the time to figure out why-->
     <div hidden$="[[user]]">
       <p>&nbsp;Login with one of these IDs<br>&nbsp; that you already use</p>
@@ -96,8 +96,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-button raised on-tap="fblogin" hidden$="[[user]]">Facebook</paper-button>
       <paper-button raised on-tap="twitterlogin" hidden$="[[user]]">Twitter</paper-button>
     </div>
-    <!--else display the app as it was written before auth required -
-    This is somewhat clumsy and brutish but good enough for a demo app -->
+
+    <!-- .... else display the app as it was written before auth required -
+    This is somewhat clumsy and brutish, but good enough for a demo app -->
     <div hidden$="[[!user]]">
       <app-location
           route="{{route}}"
@@ -116,9 +117,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-drawer id="drawer" slot="drawer" swipe-open="[[narrow]]">
             <app-toolbar>Menu</app-toolbar>
             <iron-selector  hidden$="[[!user]]" selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-              <a name="view1" href="[[rootPath]]view1">View One</a>
-              <a name="view2" href="[[rootPath]]view2">View Two</a>
-              <a name="view3" href="[[rootPath]]view3">View Three</a>
+              <div hidden$=[[!visible.view.a]]><a name="view1" href="[[rootPath]]view1">View One</a></div>
+              <div hidden$=[[!visible.view.b]]><a name="view2" href="[[rootPath]]view2">View Two</a></div>
+              <div hidden$=[[!visible.view.c]]><a name="view3" href="[[rootPath]]view3">View Three</a></div>
             </iron-selector>
             <div hidden$="[[!user]]">
               <visibility-roulette user=[[user]]></visibility-roulette>
@@ -151,7 +152,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   </template>
 
   <script>
-    class MyApp extends Polymer.Element {
+    class MyApp extends ReduxMixin(Polymer.Element)  {
       static get is() { return 'my-app'; }
       static get properties() {
         return {
@@ -166,9 +167,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           // This shouldn't be neccessary, but the Analyzer isn't picking up
           // Polymer.Element#rootPath
           rootPath: String,
-          visibility: {
+          visible: {
             type: Object,
-            statePath: 'visibility'
+            statePath: 'visible'
           }
         };
       }

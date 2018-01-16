@@ -64,6 +64,8 @@
            }
          }
        }
+       
+      // without this, fires before it is ready
       _onUser(){
         if(!!this.user && !!this.user.uid){
           this.$.queryVisibility.disabled = false;
@@ -74,26 +76,25 @@
         if(!!role){
               switch (role) {
                 case '0':
-                  console.log('A: '+role);
-                  // this.dispatch(MyControls.actions.hideA())
+                  this.dispatch(VisibilityController.actions.hideA())
                   break;
                 case '1':
-                  console.log('B: '+role);
+                  this.dispatch(VisibilityController.actions.hideB())
                   break;
                 case '2':
-                  console.log('C: '+role);
+                  this.dispatch(VisibilityController.actions.hideC())
                   break;
                 case '3':
-                  console.log('D: '+role);
+                  this.dispatch(VisibilityController.actions.hideD())
                   break;
                 case '4':
-                  console.log('E: '+role);
+                  this.dispatch(VisibilityController.actions.hideE())
                   break;
                 case '5':
-                  console.log('F: '+role);
+                  this.dispatch(VisibilityController.actions.hideF())
                   break;
                 case '6':
-                  console.log('G: '+role);
+                  this.dispatch(VisibilityController.actions.hideG())
                   break;
                 default:
                   // happens on initial display

@@ -2,7 +2,7 @@
 
 <script>
   const initialState = {
-    count: {'role':{'a':true}}
+    visible: {visible: {view:{'a':true,'b':true,'c':true}}}
   };
 
   const reducer = (state, action) => {
@@ -12,16 +12,42 @@
 
     const { type, payload } = action;
 
+    var returnValue = initialState;
+
     switch (type) {
       case 'A':
-        return { count: {'role':{'a':true}} }
+        returnValue =
+          {visible: {view:{'a':true}}};
+          break;
       case 'B':
-        return { count: {'role':{'b':true}} }
+        returnValue =
+          {visible: {view:{'b':true}}};
+          break;
       case 'C':
-        return { count: {'role':{'c':true}} }
+        returnValue =
+          {visible: {view:{'c':true}}};
+          break;
+      case 'D':
+        returnValue =
+          {visible: {view:{'a':true,'b':true}}};
+          break;
+      case 'E':
+        returnValue =
+          {visible: {view:{'b':true,'c':true}}};
+          break;
+      case 'F':
+        returnValue =
+          {visible: {view:{'a':true,'c':true}}};
+          break;
+      case 'G':
+        returnValue =
+          {visible: {view:{'a':true,'b':true,'c':true}}};
+          break;
       default:
-        return state;
+        returnValue =  initialState;
     }
+    console.log("VISIBLE:\n"+JSON.stringify(returnValue));
+    return returnValue;
   };
 
   const store = Redux.createStore(reducer);
