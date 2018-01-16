@@ -103,6 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div hidden$="[[!user]]">
       <app-location
           route="{{route}}"
+          query-params="{{queryParams}}"
           url-space-regex="^[[rootPath]]">
       </app-location>
 
@@ -173,6 +174,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             statePath: 'visible',
             observer: '_onVisible'
           },
+          queryParams: {
+              type: Object,
+              observer: '_paramsChanged'
+          },
           cookieValue: {
             type: String
           }
@@ -233,6 +238,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       connectedCallback() {
         super.connectedCallback();
+      }
+
+      _paramsChanged(queryParams) {
+        // assumes that you would have need for real code here, not console.log
+        if (!!queryParams && JSON.stringify(queryParams)!=='{}') {
+          console.log('\nIF YOU HAD A NEED FOR THEM\n' +
+          'QUERY PARAMS WOULD BE CONSUMABLE AS\n'+
+          JSON.stringify(queryParams));
+        }
       }
     }
 
