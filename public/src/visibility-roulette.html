@@ -1,0 +1,31 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymerfire/polymerfire.html"/>
+<link rel="import" href="../bower_components/polymerfire/firebase-app.html"/>
+<link rel="import" href="../bower_components/polymerfire/firebase-query.html"/>
+
+<dom-module id="visibility-roulette">
+  <template>
+    <firebase-query id="queryVisibilityRoulette" path="/VisibilityRoulette" data="{{VisibilityRoulette}}">
+    </firebase-query>
+    <button id="add" on-click="add" type="button">Play Visibility Roulette!</button>
+  </template>
+
+  <script>
+    class VisibilityRoulette extends Polymer.Element {
+      static get is() { return 'visibility-roulette'; }
+      add() {
+        console.log('VISIBILITY ROULETTE CLICKED')
+        var postData = {
+          timestamp: Date.now(),
+          uid: this.user.uid
+        }
+        var newProductKey = this.$.queryVisibilityRoulette.ref.push().key
+        var updates = {}
+        updates["/" + newProductKey] = postData;
+        this.$.queryVisibilityRoulette.ref.update(updates);
+        return;
+      }
+    }
+    window.customElements.define(VisibilityRoulette.is, VisibilityRoulette);
+  </script>
+</dom-module>

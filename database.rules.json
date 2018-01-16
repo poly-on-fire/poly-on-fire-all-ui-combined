@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
+    },
+    "VisibilityRoulette": {
+			".write": "auth !== null",
+			".read": "auth !== null"
+    }
+  }
+}

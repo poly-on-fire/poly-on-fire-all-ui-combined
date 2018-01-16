@@ -1,0 +1,109 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymerfire/polymerfire.html"/>
+<link rel="import" href="../bower_components/polymerfire/firebase-app.html"/>
+<link rel="import" href="../bower_components/polymerfire/firebase-document.html"/>
+<link rel="import" href="./redux-store.html">
+
+<dom-module id="visibility-controller">
+  <template>
+    <firebase-document id="queryVisibility" path="/users/[[user.uid]]/Visibility" data="{{visibilityData}}" disabled>
+    </firebase-document>
+  </template>
+
+    <script>
+    class VisibilityController  extends ReduxMixin(Polymer.Element) {
+       static get is() { return 'visibility-controller'; }
+       static get properties() {
+         return {
+           visibilityData: {
+             type: Number,
+             observer: '_onVisibilityData'
+           },
+           user: {
+             type: Object,
+             observer: '_onUser'
+           }
+         }
+       }
+       static get actions() {
+         return {
+           hideA() {
+             return {
+               type: 'A'
+             }
+           },
+           hideB() {
+             return {
+               type: 'B'
+             }
+           },
+           hideC() {
+             return {
+               type: 'C'
+             }
+           },
+           hideD() {
+             return {
+               type: 'D'
+             }
+           },
+           hideE() {
+             return {
+               type: 'E'
+             }
+           },
+           hideF() {
+             return {
+               type: 'F'
+             }
+           },
+           hideG() {
+             return {
+               type: 'G'
+             }
+           }
+         }
+       }
+      _onUser(){
+        if(!!this.user && !!this.user.uid){
+          this.$.queryVisibility.disabled = false;
+         }
+      }
+      _onVisibilityData(){
+        let role = this.visibilityData;
+        if(!!role){
+              switch (role) {
+                case '0':
+                  console.log('A: '+role);
+                  // this.dispatch(MyControls.actions.hideA())
+                  break;
+                case '1':
+                  console.log('B: '+role);
+                  break;
+                case '2':
+                  console.log('C: '+role);
+                  break;
+                case '3':
+                  console.log('D: '+role);
+                  break;
+                case '4':
+                  console.log('E: '+role);
+                  break;
+                case '5':
+                  console.log('F: '+role);
+                  break;
+                case '6':
+                  console.log('G: '+role);
+                  break;
+                default:
+                  // happens on initial display
+              }
+        }
+      }
+      connectedCallback() {
+        super.connectedCallback();
+      }
+     }
+     window.customElements.define(VisibilityController.is, VisibilityController);
+   </script>
+ </dom-module>
