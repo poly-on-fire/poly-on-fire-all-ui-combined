@@ -1,9 +1,7 @@
 <link rel="import" href="../bower_components/polymer-redux/polymer-redux.html" />
 
 <script>
-  const initialState = {
-    visible: {visible: {view:{'a':true,'b':true,'c':true}}}
-  };
+  const initialState = {visible: 'cookie'};
 
   const reducer = (state, action) => {
     if (!state) {
@@ -46,7 +44,6 @@
       default:
         returnValue =  initialState;
     }
-    console.log("VISIBLE:\n"+JSON.stringify(returnValue));
     return returnValue;
   };
 

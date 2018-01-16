@@ -64,47 +64,44 @@
            }
          }
        }
-       
+
       // without this, fires before it is ready
       _onUser(){
         if(!!this.user && !!this.user.uid){
           this.$.queryVisibility.disabled = false;
-         }
+        }
       }
       _onVisibilityData(){
         let role = this.visibilityData;
         if(!!role){
-              switch (role) {
-                case '0':
-                  this.dispatch(VisibilityController.actions.hideA())
-                  break;
-                case '1':
-                  this.dispatch(VisibilityController.actions.hideB())
-                  break;
-                case '2':
-                  this.dispatch(VisibilityController.actions.hideC())
-                  break;
-                case '3':
-                  this.dispatch(VisibilityController.actions.hideD())
-                  break;
-                case '4':
-                  this.dispatch(VisibilityController.actions.hideE())
-                  break;
-                case '5':
-                  this.dispatch(VisibilityController.actions.hideF())
-                  break;
-                case '6':
-                  this.dispatch(VisibilityController.actions.hideG())
-                  break;
-                default:
-                  // happens on initial display
-              }
+          switch (role) {
+            case '0':
+              this.dispatch(VisibilityController.actions.hideA())
+              break;
+            case '1':
+              this.dispatch(VisibilityController.actions.hideB())
+              break;
+            case '2':
+              this.dispatch(VisibilityController.actions.hideC())
+              break;
+            case '3':
+              this.dispatch(VisibilityController.actions.hideD())
+              break;
+            case '4':
+              this.dispatch(VisibilityController.actions.hideE())
+              break;
+            case '5':
+              this.dispatch(VisibilityController.actions.hideF())
+              break;
+            case '6':
+              this.dispatch(VisibilityController.actions.hideG())
+              break;
+            default:
+              // happens on initial display
+          }
         }
       }
-      connectedCallback() {
-        super.connectedCallback();
-      }
-     }
-     window.customElements.define(VisibilityController.is, VisibilityController);
+    }
+    window.customElements.define(VisibilityController.is, VisibilityController);
    </script>
  </dom-module>

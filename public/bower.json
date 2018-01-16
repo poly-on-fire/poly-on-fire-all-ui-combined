@@ -18,7 +18,8 @@
     "polymerfire": "^2.2.1",
     "polymer-redux": "^1.0.1",
     "redux": "https://cdnjs.cloudflare.com/ajax/libs/redux/3.7.2/redux.js",
-    "paper-icon-button": "PolymerElements/paper-icon-button#~2.0.1"
+    "paper-icon-button": "PolymerElements/paper-icon-button#~2.0.1",
+    "iron-cookie": "wincinderith/iron-cookie#^2.0.2"
   },
   "resolutions": {
     "polymer": "^2.0.0"
