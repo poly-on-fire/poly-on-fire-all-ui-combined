@@ -17,12 +17,12 @@ The idea is to prove out an approach or component in the simplest project first,
 
 This is kind of a poor-man's predecessor to poly-on-fire-pullmodel for working out some of the kinks, first.
 
-You're welcome to peruse this project but going straight to pullmodel might be more helpful? The disjointed aspect of 
+You're welcome to peruse this project but going straight to pullmodel might be more helpful? The disjointed aspect of
 the notes below might be one indication of how screwy this app is.
 
 On the good side, it is simpler than pullmodel, so it might be easier to look at.
 
-** If you still want to proceed:
+## If you still want to proceed, some old notes:
 
 Combined UI built from all other poly-on-fire building blocks - Polymer on Firebase
 
